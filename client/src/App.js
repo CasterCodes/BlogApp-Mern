@@ -63,11 +63,10 @@ const App = (props) => {
 
   // delete a post
   const deletePost = async (id) => {
-    setPosts([...posts, posts.filter((post) => post.id !== id)]);
     await fetch(`/posts/${id}`, {
       method: "DELETE",
     });
-    setPost({});
+    setPosts([...posts, posts.filter((post) => post.id !== id)]);
   };
 
   // edit post
@@ -94,6 +93,13 @@ const App = (props) => {
   const showAlert = (message, type) => {
     setAlert({ message, type });
   };
+
+  // remove alert alert 3s
+  if (alert) {
+    setTimeout(() => {
+      setAlert(null);
+    }, 3000);
+  }
   return (
     <Router>
       <div className='App'>

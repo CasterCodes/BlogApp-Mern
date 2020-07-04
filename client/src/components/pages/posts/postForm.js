@@ -6,6 +6,7 @@ const PostForm = (props) => {
     title: "",
     body: "",
   });
+  const [redirect, setRedirect] = useState(false);
   const { current } = props;
   const { author, title, body } = post;
   useEffect(() => {
@@ -39,8 +40,11 @@ const PostForm = (props) => {
       title: "",
       body: "",
     });
-    return <Redirect to='/' />;
+    setRedirect(true);
   };
+  if (redirect) {
+    return <Redirect to='/' />;
+  }
   return (
     <div className='contianer'>
       <div className='card card-body bg-light mt-5'>
